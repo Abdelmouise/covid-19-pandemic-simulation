@@ -11,22 +11,26 @@ from sklearn.metrics import pairwise_distances_argmin_min
 def draw_population_state_daily(stats_arg, x_tick=10):
     fig, ax = plt.subplots(figsize=(15, 10))
     set_ax_mean_population_state_daily(ax, stats_arg, x_tick)
-    st.pyplot( width=50, height=50)
+    st.pyplot(width=50, height=50)
+
 
 def draw_specific_population_state_daily(stats_arg, x_tick=10, style="P"):
     fig, ax = plt.subplots(figsize=(15, 10))
     set_ax_specific_population_state_daily(ax, stats_arg, x_tick, style)
     st.pyplot()
 
+
 def draw_lockdown_state_daily(stats_arg, x_tick=10):
     fig, ax = plt.subplots(figsize=(15, 10))
     set_ax_lockdown_state_daily(ax, stats_arg["loc"], x_tick)
-    st.pyplot()
+    st.pyplot(use_container_width=False)
+
 
 def draw_new_daily_cases(stats_arg, x_tick=10):
     fig, ax = plt.subplots(figsize=(15, 10))
     set_ax_new_daily_cases(ax, stats_arg, x_tick)
     st.pyplot(figsize=(20, 10))
+
 
 def draw_summary(stats_arg, x_tick=10):
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(16, 10))
@@ -38,6 +42,7 @@ def draw_summary(stats_arg, x_tick=10):
     ax2.set_title('')
     ax3.set_title('')
     st.pyplot()
+
 
 def draw_examples(stats_arg, x_tick=10):
     grid_size = 3
@@ -55,23 +60,25 @@ def draw_examples(stats_arg, x_tick=10):
             run_id = chosen_runs[run_index]
             death_pct = (100 * stats_arg['dea'][run_id][:][-1] / np.max(stats_arg['hea']))
             set_ax_run_population_state_daily(ax, stats_arg, run_id, x_tick)
-            if run_index != grid_size-1:
+            if run_index != grid_size - 1:
                 ax.legend("")
-            if run_index != 2*grid_size:
+            if run_index != 2 * grid_size:
                 ax.set_xlabel("")
                 ax.set_ylabel("")
             ax.set_title("Run n°%d - Death percentage %.2f %%" % (run_id, death_pct))
             run_index += 1
     st.pyplot()
 
+
 def draw_r0_evolution(stats_arg, x_tick=10):
     fig, ax = plt.subplots(figsize=(15, 10))
     set_ax_r0(ax, stats_arg["R0"], x_tick=10)
     st.pyplot()
 
+
 # Print iterations progress
 # https://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
-def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', print_end ="\r"):
+def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, length=100, fill='█', print_end="\r"):
     """
     Call in a loop to create terminal progress bar
     @params:
@@ -117,7 +124,7 @@ def set_ax_r0(ax, stats_r0, x_tick=10):
     ax.set_xticks(np.arange(0, n_day_arg, int(n_day_arg / x_tick)), tuple([(str(int(i * n_day_arg / x_tick)))
                                                                            for i in range(x_tick)]))
     ax.set_yticks(np.arange(min_s, math.ceil(max_s) + 1, 0.25))
-    ax.legend((p[0], cst_1[0], ), (name_state, "Equilibre",))
+    ax.legend((p[0], cst_1[0],), (name_state, "Equilibre",))
 
 
 def set_ax_population_state_daily(ax, stats_arg, x_tick=10):
@@ -154,7 +161,8 @@ def set_ax_population_state_daily(ax, stats_arg, x_tick=10):
 
     ax.set_ylabel('Total population')
     ax.set_xlabel('Days since innoculation')
-    ax.set_title('Average pandemic evolution - Death percentage %.2f %%"' % (100*dead_serie[-1]/np.max(stats_arg['hea'])))
+    ax.set_title(
+        'Average pandemic evolution - Death percentage %.2f %%"' % (100 * dead_serie[-1] / np.max(stats_arg['hea'])))
     ax.set_xticks(np.arange(0, n_day_arg, int(n_day_arg / x_tick)),
                   tuple([(str(int(i * n_day_arg / x_tick))) for i in range(x_tick)]))
 
@@ -211,8 +219,8 @@ def set_ax_specific_population_state_daily(ax, stats_arg, x_tick=10, style="P"):
 
     ax.set_xticks(np.arange(0, n_day_arg, int(n_day_arg / x_tick)), tuple([(str(int(i * n_day_arg / x_tick)))
                                                                            for i in range(x_tick)]))
-    ax.set_yticks(np.arange(0, int(max(serie)*1.1), int(1+max(serie)/10)))
-    ax.legend((p[0],), (name_state, ))
+    ax.set_yticks(np.arange(0, int(max(serie) * 1.1), int(1 + max(serie) / 10)))
+    ax.legend((p[0],), (name_state,))
 
 
 def set_ax_lockdown_state_daily(ax, stats_lock, x_tick=10):
@@ -237,8 +245,8 @@ def set_ax_lockdown_state_daily(ax, stats_lock, x_tick=10):
 
     ax.set_xticks(np.arange(0, n_day_arg, int(n_day_arg / x_tick)), tuple([(str(int(i * n_day_arg / x_tick)))
                                                                            for i in range(x_tick)]))
-    ax.set_yticks(np.arange(min_s-1, max_s+1, 1+int((max_s-min_s)/10)))
-    ax.legend((p[0],), (name_state, ))
+    ax.set_yticks(np.arange(min_s - 1, max_s + 1, 1 + int((max_s - min_s) / 10)))
+    ax.legend((p[0],), (name_state,))
 
 
 def set_ax_new_daily_cases(ax, stats_arg, x_tick=10):
@@ -258,19 +266,23 @@ def set_ax_new_daily_cases(ax, stats_arg, x_tick=10):
     ax.set_title('New infected cases evolution')
     ax.set_xticks(np.arange(0, n_day_arg, int(n_day_arg / x_tick)), tuple([(str(int(i * n_day_arg / x_tick)))
                                                                            for i in range(x_tick)]))
-    ax.set_yticks(np.arange(0, int(1+max(new_cases_serie) * 1.1), int(1+max(new_cases_serie) / 10)))
+    ax.set_yticks(np.arange(0, int(1 + max(new_cases_serie) * 1.1), int(1 + max(new_cases_serie) / 10)))
     ax.legend((p1[0],), ('New cases',))
 
 
 def chose_draw_plot(draw_graph_arg, stats_arg):
     if draw_graph_arg:
         if contains_substring("pop", draw_graph_arg):
+            st.markdown("## I- Évolution moyenne de la pandémie :")
             draw_population_state_daily(stats_arg)
         if contains_substring("new", draw_graph_arg):
+            st.markdown("## II- L'évolution des nouveaux cas infectés :")
             draw_new_daily_cases(stats_arg)
         if contains_substring("hos", draw_graph_arg):
+            st.markdown("## III- l'évolution des cas hospitalisés : ")
             draw_specific_population_state_daily(stats_arg, style="P")
         if contains_substring("sum", draw_graph_arg):
+            st.markdown("## IV- Résumé du scénario : ")
             draw_summary(stats_arg)
         if contains_substring("ex", draw_graph_arg):
             draw_examples(stats_arg)

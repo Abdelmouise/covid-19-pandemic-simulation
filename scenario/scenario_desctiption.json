@@ -1,0 +1,34 @@
+[
+  {
+    "scneario_id": -1,
+    "description": " **description du scénario** : La pandémie commence et les autorités décident que le virus n’est qu’une simple grippe. Aucune modification de comportement n’est demandée à la population. Les cafés, restaurants et entreprises restent opérationnels."
+  },
+  {
+    "scneario_id": 0,
+    "description": "**description du scénario** : Le confinement actuel est maintenu indéfiniment. Car on ne sait jamais si le virus est dormant sur une porte de tramway ou un étal de supermarché."
+  },
+  {
+		"scneario_id": 1,
+		"description": "**description du scénario** : Le confinement infini n’est pas réaliste. Par conséquent, nous allons maintenir le confinement strict défini précédemment jusqu’à extinction totale du nombre de nouveaux cas et étendu un certain nombre de jours après. Puis le déconfinement est progressif : les frontières restent fermées mais la vie quotidienne peut reprendre un cours normal en espérant qu’il n’y ait pas de foyers caché…"
+  },
+  {
+		"scneario_id": 2,
+		"description": "**description du scénario** : Le modèle du scénario 1 a permis d’extraire une variable intéressante : le nombre de jours avant le début du déconfinement. 21 jours a semblé un sweet spot pour un déconfinement responsable. Mais ce sont 21 jours après la dernière infection déclarée et celle-ci peut tarder. En moyenne avec notre scénario 1 à 21 jours d’attente, il a fallu attendre 66 jours pour la dernière occurence d’infection. Une population peut-elle tenir aussi longtemps sans incivilités  ?\n\nSi on y réfléchit un peu plus, le vrai trade-off à aller chercher est bien entre le niveau de saturation des hôpitaux [10] et le niveau de confinement de la population. Confiner c’est soulager le système sanitaire, mais c’est aussi fragiliser l’économie [16] et s’exposer à un mécontentement populaire au mieux, à des manifestations et révoltes au pire [14].\n\nLe scénario 1 n’est donc à première vue pas réalisable et un déconfinement temporaire doit survenir pour relâcher la pression. A quel moment celui-ci peut-il être réalisé et pendant combien de temps ? Suivant quelle périodicité ?\n\nTestons un nouveau scénario :\n\n - Dès qu’il n’y a plus de nouveaux cas déclarés, le relâchement est acté au bout de 7 jours d’attente (toujours à travers la procédure citée plus haut) comme dans le scénario 1\n - Mais dès que la saturation des hôpitaux est atteinte, le confinement est resserré (à travers vous l’avez deviné les fonctions inverses de la procédure de déconfinement)\n - Deux changements successifs de configuration de confinement (relâchement ou resserrement) ne peuvent arriver qu’au minimum 7 jours d’intervalle (en raison de l’inertie sociale organisationnelle de tels changement)"
+  },
+  {
+    "scneario_id": 3,
+    "description": "**description du scénario** : La fameuse idée proposée par les britanniques et suédois était d’aboutir rapidement à l’immunité collective (atteinte en mai en Suède d’après un officiel ? ) de la manière la plus efficiente possible à travers un confinement très limité combiné à une prise de conscience citoyenne irréprochable. Cette idée est séduisante mais nécessite un changement spontanée des comportements (ce qui est le cas en Suède) et un système de santé robuste. Comment se traduit-elle dans la modélisation proposée ?\n\nConcernant la capacité hospitalière, nous allons la rendre infinie afin de ne pas impacter les tables de mortalité. Après tout, un pays qui se lance dans une immunité collective doit avoir confiance en son système de santé.\n\nDe plus, autorisons la population à aller travailler en repassant à 58% de personnes en télétravail et uniquement 30% des individus qui vont à l’épicerie la plus proche. Par contre, nous allons considérer des probabilités de contagion strictes : 1% de contagion au travail et dans les transports publics, 0.1% dans les épiceries et toujours 50% dans les foyers."
+  },
+  {
+    "scneario_id": 4,
+    "description": "**description du scénario** : Le scénario 0 avec confinement strict a été adopté par les autorités. Ce sera difficile pour la population mais il faut tuer la pandémie au plus vite. Par contre, il existe un peu partout un certain nombre de citoyens infectés qui ne respectent pas les consignes de protection sanitaire. Ce sont les fameux super spreaders .\n\nConsidérons donc les paramètres de ce scénario avec l’ajustement suivant :\n\n - Chaque jour, on prend plusieurs personnes contagieuses au hasard et on multiplie par 10 leur indice de comportement individuel ce qui le ramène entre 500% et 1500% (ce qui signifie que les probabilités de contagion avec ces individus sont multipliées par 5 à 30…). Un tel individu ne respectant donc pas les règles de précaution élémentaires, il va sans dire que le champion se rend sur son lieu de travail…\n\n Le confinement strict peut-il vaincre quelques incivilités isolées ?"
+  },
+  {
+    "scneario_id": 5,
+    "description": "**description du scénario** : Si au lieu d’avoir des individus irresponsables, nous avions un quartier entier mais avec un indice de comportement seulement légèrement plus important que les autres quartiers. A travers ce scénario, nous cherchons à modéliser des quartiers pour lesquels la confinement est structurellement et socialement difficile [21]. Le confinement strict peut-il cette fois-ci battre un quartier entier ?\n\nNous avions évoqué dans nos hypothèses le système de grille et de quartiers. Il y en a par défaut 400.\n\nPrenons 4 quartiers au hasard (donc à peu près 1% des foyers) et multiplions leur indice de comportement par 10 comme dans le scénario précédent :"
+  },
+  {
+    "scneario_id": 6,
+    "description": "**description du scénario** : Restons toujours dans la situation de confinement strict mais imposons qu’il y ait un certain nombre de personnes infectées qui arrivent chaque jour dans notre pays. Ce sont des touristes, des MRE, des hommes d’affaire …\n\nAvec par exemple une personne infectée par jour qui s’ajoute à la population, le confinement strict est-il suffisant pour contrôler la pandémie (qui ne peut du coup pas s’arrêter par construction) et l’empêcher de s’emballer ?"
+  }
+]
